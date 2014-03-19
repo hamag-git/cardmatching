@@ -1,18 +1,19 @@
 //
-//  CardAppDelegate.m
-//  cardmatching
+//  CardGameAppDelegate.m
+//  matchismo
 //
-//  Created by Kai Pervoelz on 19.03.14.
-//  Copyright (c) 2014 termit. All rights reserved.
+//  Created by Kai Pervölz on 28.02.14.
+//  Copyright (c) 2014 kpervoelz. All rights reserved.
 //
 
 #import "CardAppDelegate.h"
 
-@implementation CardAppDelegate
+@implementation CardGameAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
     return YES;
 }
 							
