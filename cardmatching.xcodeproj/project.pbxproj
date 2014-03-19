@@ -127,11 +127,11 @@
 		7E04FA5A18D9D65E00178B52 /* cardmatching */ = {
 			isa = PBXGroup;
 			children = (
-				7E04FA8918D9D9CF00178B52 /* model */,
 				7E04FA6618D9D65E00178B52 /* Main.storyboard */,
 				7E04FA6918D9D65F00178B52 /* CardViewController.h */,
 				7E04FA6A18D9D65F00178B52 /* CardViewController.m */,
 				7E04FA6C18D9D65F00178B52 /* Images.xcassets */,
+				7E04FA8918D9D9CF00178B52 /* model */,
 				7E04FA5B18D9D65E00178B52 /* Supporting Files */,
 			);
 			path = cardmatching;
