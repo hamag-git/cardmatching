@@ -12,11 +12,15 @@
 @interface CardMatchingGame()
 @property (nonatomic, readwrite)NSInteger score;
 @property (nonatomic,strong) NSMutableArray * cards;
+@property (nonatomic) NSUInteger numberCardToMatch;
 
 @end
 
 
 @implementation CardMatchingGame
+
+
+
 
 - (NSMutableArray *)cards{
     if(!_cards) _cards =[[NSMutableArray alloc] init];
@@ -65,37 +69,50 @@ static const int MATCH_BONUS=4;
 -(void)chooseCardAtIndex:(NSUInteger) index{
     Card *card = [self cardAtIndex:index];
     
+    
     if(!card.isMatched){
         if(card.isChosen){
             card.chosen= NO;
         }else {
+            NSMutableArray * chosenCards = [[NSMutableArray alloc] init];
             for(Card *otherCard in self.cards){
                 if(otherCard.isChosen && !otherCard.isMatched){
-                    int matchScore = [card match:@[otherCard]];
-                    if(matchScore){
-                        self.score += matchScore * MATCH_BONUS;
-                        otherCard.matched=YES;
-                        card.matched=YES;
-                    }else {
-                        self.score -= MATCH_PENALTY;
-                        otherCard.chosen=NO;
+                    [chosenCards addObject:otherCard];
+                }
+            }
+            NSLog(@"chosenCards count: %d and numberToMatch: %d", [chosenCards count],self.numberCardToMatch);
+            if([chosenCards count] == self.numberCardToMatch-1){
+                NSLog(@"start matching");
+                int matchScore = [card match:chosenCards];
+                if(matchScore){
+                    self.score += matchScore * MATCH_BONUS;
+                    for(Card *otherCard in self.cards){
+                        if(otherCard.isChosen && !otherCard.isMatched){
+                            otherCard.matched=YES;
+                            card.matched=YES;
+                        }
                     }
-                    break;
-                    
+                }else {
+                    self.score -= MATCH_PENALTY;
+                    for(Card *otherCard in self.cards){
+                        if(otherCard.isChosen && !otherCard.isMatched){
+                            otherCard.chosen=NO;
+                        }
+                    }
                 }
             }
             self.score -= COST_TO_CHOOSE;
             card.chosen= YES;
         }
-        
-        
-        
     }
-    
-    
-    
+}
+
+-(void)numberOfCardsToMatch:(NSUInteger) number{
+    self.numberCardToMatch = number;
+    NSLog(@"No of Card to Match: %d", self.numberCardToMatch);
     
 }
+
 
 
 

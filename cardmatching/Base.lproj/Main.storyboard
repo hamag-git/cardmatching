@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Card Game View Controller-->
@@ -185,13 +185,14 @@
                                     <segment title="3-card-modeX"/>
                                 </segments>
                                 <connections>
-                                    <action selector="modeSegmentControl:" destination="vXZ-lx-hvc" eventType="valueChanged" id="BIf-z7-aOQ"/>
+                                    <action selector="selectGameMode:" destination="vXZ-lx-hvc" eventType="valueChanged" id="EV9-tw-yaX"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="gameModeSegControl" destination="aiz-BA-JkB" id="aVT-dM-mrV"/>
                         <outlet property="scoreLabel" destination="f7V-hX-5gf" id="oNL-HX-3hb"/>
                         <outletCollection property="cardButtons" destination="uD0-As-H0Z" id="tey-ep-gnh"/>
                         <outletCollection property="cardButtons" destination="I5l-QJ-cAh" id="rpc-Vy-JgD"/>

@@ -11,11 +11,13 @@
 
 @interface CardMatchingGame : NSObject
 
-- (instancetype)initWithCardCount:(NSUInteger) count usingDeck: (Deck*) deck;
+-(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck;
 
 -(void)chooseCardAtIndex:(NSUInteger) index;
 
 -(Card *)cardAtIndex:(NSUInteger) index;
+
+-(void)numberOfCardsToMatch:(NSUInteger) number;
 
 -(void)reDealCards;
 

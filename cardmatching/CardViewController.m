@@ -17,6 +17,7 @@
 @property (nonatomic, strong) CardMatchingGame *gameModel;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegControl;
 
 @end
 
@@ -38,18 +39,18 @@
 
 - (IBAction)reDealButton:(id)sender {
     self.gameModel = nil;
-    
+    self.gameModeSegControl.enabled = YES;
     [self updateUI];
     
 }
 
-- (IBAction)modeSegmentControl:(id)sender {
-    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
-    NSLog(@"Selected: %d %@", [segmentedControl selectedSegmentIndex], [segmentedControl titleForSegmentAtIndex: [segmentedControl selectedSegmentIndex]]);
-}
-
 - (IBAction)touchCardButton:(UIButton *)sender {
-
+    
+    if (self.gameModeSegControl.enabled){
+        NSInteger selectedSegment = self.gameModeSegControl.selectedSegmentIndex;
+        [self.gameModel numberOfCardsToMatch:selectedSegment+2];
+        self.gameModeSegControl.enabled = NO;
+    }
     int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     NSLog(@"touchCardButton index: %d", chosenButtonIndex);
     [self.gameModel chooseCardAtIndex:chosenButtonIndex];
@@ -57,6 +58,11 @@
     
 }
 
+- (IBAction)selectGameMode:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    [self.gameModel numberOfCardsToMatch:selectedSegment+2];
+}
 
 -(void) updateUI{
     for (UIButton *cardButton in self.cardButtons){
